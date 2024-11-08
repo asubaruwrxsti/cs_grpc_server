@@ -8,9 +8,6 @@
 using grpc = global::Grpc.Core;
 
 namespace GrpcServer {
-  /// <summary>
-  /// The greeting service definition.
-  /// </summary>
   public static partial class Greeter
   {
     static readonly string __ServiceName = "greet.Greeter";
@@ -71,12 +68,6 @@ namespace GrpcServer {
     [grpc::BindServiceMethod(typeof(Greeter), "BindService")]
     public abstract partial class GreeterBase
     {
-      /// <summary>
-      /// Sends a greeting
-      /// </summary>
-      /// <param name="request">The request received from the client.</param>
-      /// <param name="context">The context of the server-side call handler being invoked.</param>
-      /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::GrpcServer.HelloReply> SayHello(global::GrpcServer.HelloRequest request, grpc::ServerCallContext context)
       {

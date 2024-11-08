@@ -1,21 +1,24 @@
 using Grpc.Core;
-using GrpcServer;
 
-namespace GrpcServer.Services;
-
-public class GreeterService : Greeter.GreeterBase
+namespace GrpcServer.Services
 {
-    private readonly ILogger<GreeterService> _logger;
-    public GreeterService(ILogger<GreeterService> logger)
+    public class GreeterService : Greeter.GreeterBase
     {
-        _logger = logger;
-    }
+        private readonly ILogger<GreeterService> _logger;
 
-    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
-    {
-        return Task.FromResult(new HelloReply
+        public GreeterService(ILogger<GreeterService> logger)
         {
-            Message = "Hello " + request.Name
-        });
+            _logger = logger;
+        }
+
+        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+        {
+            _logger.LogInformation($"Received greeting request for {request.Name}");
+
+            return Task.FromResult(new HelloReply
+            {
+                Message = $"Hello {request.Name}"
+            });
+        }
     }
 }
